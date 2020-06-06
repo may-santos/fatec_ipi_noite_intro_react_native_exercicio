@@ -3,34 +3,30 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
 
-  const [numeros, setNumeros] = useState([]);
+  let [numeros, setNumeros] = useState([]);
 
   const gerarMegaSena = () => {
+    numeros = [] // limpa o array anterior.
+    while(numeros.length != 6) { // vai verificar se já tem 6 números, se não tiver, vai rodar o comando.
+      numeros.push(Math.floor(Math.random() * 60) + 1); // gera número aleatório entre 1 e 6 e armazena em numeros.push
 
-    let numeros = [];
-
-    while(numeros.length != 6) {
-      let gerador = Math.floor(Math.random() * 60) + 1;
-      numeros.push(gerador);
-
-      numeros = numeros.filter((item, index) => {
+      numeros = numeros.filter((item, index) => { // verifica se há números repetidos.
         return numeros.indexOf(item) === index;
       });
     }
 
-    alert(numeros)
-    setNumeros( [ numeros ]);
+    setNumeros( [ numeros ]); // seta o array de 6 números aleatórios.
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.cardView}>
         <Text style={ styles.tituloText }>TESTE SUA SORTE!</Text>
-        <Text style={ styles.subTituloText }> { numeros.map(numero => `${numero}`) }</Text>
         <Button 
           title="Gerar números da MEGA SENA"
           onPress={gerarMegaSena}
         />
+        <Text style={ styles.subTituloText }> { numeros.map(numero => `${numero}`) }</Text>
       </View>
     </View>
   );
@@ -47,7 +43,7 @@ const styles = StyleSheet.create({
         marginBottom: 16, fontSize: 28, color: '#c62828'
     },
     subTituloText: {
-        marginBottom: 16, fontSize: 24, color: '#ef5350'
+        marginTop: 16, fontSize: 24, color: '#ef5350'
     },
     cardView: {
       textAlign: 'center',
