@@ -8,7 +8,7 @@ export default function App() {
   const gerarMegaSena = () => {
     numeros = [] // limpa o array anterior.
     while(numeros.length != 6) { // vai verificar se já tem 6 números, se não tiver, vai rodar o comando.
-      numeros.push(Math.floor(Math.random() * 60) + 1); // gera número aleatório entre 1 e 6 e armazena em numeros.push
+      numeros.push(Math.floor(Math.random() * 60) + 1); // gera número aleatório entre 1 e 60 e armazena em numeros.push
 
       numeros = numeros.filter((item, index) => { // verifica se há números repetidos.
         return numeros.indexOf(item) === index;
